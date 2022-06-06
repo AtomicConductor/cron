@@ -21,7 +21,7 @@ them in their own goroutines.
 	c := cron.New()
 	c.AddFunc("30 * * * *", func() { fmt.Println("Every hour on the half hour") })
 	c.AddFunc("30 3-6,20-23 * * *", func() { fmt.Println(".. in the range 3-6am, 8-11pm") })
-	c.AddFunc("CRON_TZ=Asia/Tokyo 30 04 * * * *", func() { fmt.Println("Runs at 04:30 Tokyo time every day") })
+	c.AddFunc("CRON_TZ=Asia/Tokyo 30 04 * * *", func() { fmt.Println("Runs at 04:30 Tokyo time every day") })
 	c.AddFunc("@hourly",      func() { fmt.Println("Every hour, starting an hour from now") })
 	c.AddFunc("@every 1h30m", func() { fmt.Println("Every hour thirty, starting an hour thirty from now") })
 	c.Start()
@@ -44,7 +44,7 @@ A cron expression represents a set of times, using 5 space-separated fields.
 	----------   | ---------- | --------------  | --------------------------
 	Minutes      | Yes        | 0-59            | * / , -
 	Hours        | Yes        | 0-23            | * / , -
-	Day of month | Yes        | 1-31            | * / , - ?
+	Day of month | Yes        | 1-31            | * / , - ? L
 	Month        | Yes        | 1-12 or JAN-DEC | * / , -
 	Day of week  | Yes        | 0-6 or SUN-SAT  | * / , - ?
 
@@ -104,6 +104,9 @@ Question mark ( ? )
 
 Question mark may be used instead of '*' for leaving either day-of-month or
 day-of-week blank.
+
+'L' stands for "last". When used in the day-of-month field, it specifies
+the last day of the month.
 
 Predefined schedules
 
